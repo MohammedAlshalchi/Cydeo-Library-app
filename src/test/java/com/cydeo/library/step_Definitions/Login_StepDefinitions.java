@@ -1,6 +1,8 @@
 package com.cydeo.library.step_Definitions;
 
+import com.cydeo.library.pages.LandingPage;
 import com.cydeo.library.pages.LoginPage;
+import com.cydeo.library.utilities.BrowserUtils;
 import com.cydeo.library.utilities.ConfigurationReader;
 import com.cydeo.library.utilities.Driver;
 import io.cucumber.java.en.And;
@@ -14,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Login_StepDefinitions {
 
 LoginPage loginPage = new LoginPage();
+LandingPage landingPage = new LandingPage();
 WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
     @Given("user is on the login page")
 
@@ -71,6 +74,17 @@ WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
         Assert.assertTrue(actual.contains(expected));
         Driver.closeDriver();
 
+
+    }
+
+    @Then("account holder name should be {string}")
+    public void accountHolderNameShouldBe(String expectedAccountUsername) {
+        BrowserUtils.waitForVisibility(landingPage.accountUsername,5);
+   String actualAccountUsername = landingPage.accountUsername.getText();
+
+   Assert.assertEquals(expectedAccountUsername,actualAccountUsername);
+
+   Driver.closeDriver();
 
     }
 }

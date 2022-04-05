@@ -5,15 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LandingPage extends PageBase{
+public abstract class PageBase {
 
-    public LandingPage (){
-
+    public PageBase(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
-
-   @FindBy(xpath = "//h2[@id='user_count']")
-   public WebElement userCount;
-
-
+    @FindBy(xpath = "//a[@id='navbarDropdown']/span")
+    public WebElement accountUsername;
 }
